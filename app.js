@@ -27,6 +27,7 @@ app.get('/', function (req, res) {
     '/yo/Dr.Rogers <br>' +
     '/fortune <br>' +
     '/fancy/?first=Denise&last=Case <br>' +
+    '/pokemon <br>' +
     '<br> <br>' +
     'Fork the source code from <a href="https://github.com/denisecase/node-express-app">https://github.com/denisecase/node-express-app</a>'
   )
@@ -82,6 +83,12 @@ app.get('/fortune', (req,res) => {
   }
 })
 
+let pokemon = ['Bulbasaur', 'Squirtle', 'Charmander']
+
+app.get('/pokemon', (req,res) => {
+    res.send(`<h1>Starter Pokemon: ${pokemon[randomInt(0, pokemon.length)]}</h1>`)
+})
+
 // Use middleware to handle all non-managed routes (e.g. /xyz)
 // https://expressjs.com/en/api.html#req.originalUrl
 app.use((req, res, next) => {
@@ -99,6 +106,7 @@ app.listen(port, hostname, () => {
   console.log(`   Try /greeting/yourname`)
   console.log(`   Try /yo/Dr.Rogers`)
   console.log(`   Try /fancy/?first=Denise&last=Case`)
+  console.log(`   Try /pokemon`)
   console.log('\n Hit CTRL-C CTRL-C to stop\n')
 })
 
